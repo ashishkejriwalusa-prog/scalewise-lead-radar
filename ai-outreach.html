@@ -51,7 +51,27 @@
 function val(id){const el=document.getElementById(id);return el ? String(el.value || '').trim() : '';}
 function raw(id){const el=document.getElementById(id);return el ? el.value : '';}
 function setVal(id,value){const el=document.getElementById(id);if(el)el.value=value;}
-function collectLead(){return{name:val('posterName'),company:val('company'),profile:val('profile'),post:val('post'),service:raw('service'),role:raw('role'),businessType:raw('businessType'),trigger:val('trigger'),pain:raw('pain'),urgency:raw('urgency'),cta:raw('cta'),services:val('services'),postText:val('postText'),notes:val('notes')}}
+function collectLead(){
+  const styleGuide = 'Style preference: include a section titled RECOMMENDED MESSAGE TO SEND FIRST. Keep the first message short, specific, polite, and low pressure. Keep it around 45 to 80 words. Mention the exact trigger naturally. Use only one or two relevant services. Avoid negative assumptions about the business or its books. Do not sound salesy. Do not claim to have opened or read any URL. Use a soft next step such as sharing a quick summary or reviewing the requirement. Keep follow-ups brief.';
+  const userNotes = val('notes');
+
+  return {
+    name: val('posterName'),
+    company: val('company'),
+    profile: val('profile'),
+    post: val('post'),
+    service: raw('service'),
+    role: raw('role'),
+    businessType: raw('businessType'),
+    trigger: val('trigger'),
+    pain: raw('pain'),
+    urgency: raw('urgency'),
+    cta: raw('cta'),
+    services: val('services'),
+    postText: val('postText'),
+    notes: (userNotes ? userNotes + '\n\n' : '') + styleGuide
+  }
+}
 async function generateAI(){const statusEl=document.getElementById('status');const outputEl=document.getElementById('output');statusEl.textContent='Generating with OpenRouter...';outputEl.textContent='Generating...';try{const res=await fetch('/.netlify/functions/generate-outreach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collectLead())});let data={};try{data=await res.json();}catch(parseError){throw new Error('The server returned a non-JSON response. The function may not be deployed correctly.');}if(!res.ok){throw new Error(data.error||'OpenRouter request failed.');}outputEl.textContent=data.text||'No output returned.';statusEl.textContent='Generated using '+(data.model||'OpenRouter model')+'.';}catch(err){outputEl.textContent='Error: '+err.message+'\n\nIf this mentions a model or OpenRouter request, the page is working and we need to adjust the OpenRouter model/key. If this mentions OPENROUTER_API_KEY, check the Netlify variable name.';statusEl.textContent='Generation failed.';}}
 function copyOutput(){const text=document.getElementById('output').textContent.trim();if(!text||text==='Your AI-generated outreach will appear here.')return alert('Generate output first.');navigator.clipboard.writeText(text).then(()=>alert('Copied.'))}
 function saveLocal(){const item={date:new Date().toISOString(),lead:collectLead(),output:document.getElementById('output').textContent};const saved=JSON.parse(localStorage.getItem('scalewise_ai_outreach')||'[]');saved.unshift(item);localStorage.setItem('scalewise_ai_outreach',JSON.stringify(saved));alert('Saved locally in this browser.');}
