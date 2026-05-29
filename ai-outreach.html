@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ScaleWise AI Outreach Generator</title>
+<style>
+:root{--navy:#07182E;--gold:#C9A646;--bg:#F6F7FA;--text:#101828;--muted:#667085;--line:#E5E7EB;--blue:#2563EB;--green:#067647;--red:#B42318}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif}.page{max-width:1180px;margin:0 auto;padding:28px}.hero{background:linear-gradient(135deg,var(--navy),#0C2340);color:#fff;border-radius:28px;padding:30px;margin-bottom:20px}.hero h1{margin:0 0 8px;font-size:32px}.hero p{margin:0;color:#D7DEE9;line-height:1.6}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 8px 24px rgba(15,23,42,.04);margin-bottom:18px}.card h2{margin:0 0 8px;color:var(--navy)}.sub{color:var(--muted);line-height:1.55;margin:0 0 16px}label{display:block;font-size:13px;font-weight:800;color:var(--navy);margin-bottom:7px}.field{margin-bottom:14px}input,textarea,select{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:#fff;outline:none}textarea{min-height:115px;resize:vertical;line-height:1.55}.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;background:var(--navy);color:#fff;padding:11px 16px;font-weight:800;cursor:pointer;text-decoration:none;font-size:14px;margin-right:8px;margin-bottom:8px}.btn.gold{background:var(--gold);color:var(--navy)}.btn.outline{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn.green{background:#ECFDF3;color:var(--green);border:1px solid #ABEFC6}.notice{border-left:4px solid var(--gold);background:#FFFBEB;color:#713F12;border-radius:14px;padding:14px 16px;line-height:1.55;margin-bottom:18px}.notice.blue{border-left-color:var(--blue);background:#EFF6FF;color:#1E3A8A}.notice.red{border-left-color:var(--red);background:#FEE4E2;color:#7A271A}.output{white-space:pre-wrap;line-height:1.6;background:#FBFCFE;border:1px solid var(--line);border-radius:18px;padding:18px;min-height:320px}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}.topbar a{color:var(--navy);font-weight:800;text-decoration:none}.small{font-size:12px;color:var(--muted)}@media(max-width:900px){.grid{grid-template-columns:1fr}.page{padding:18px}.hero h1{font-size:28px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar"><a href="/">← Back to Lead Radar</a><span class="small">ScaleWise AI Outreach Generator</span></div>
+  <div class="hero"><h1>AI Outreach Generator</h1><p>Enter the lead context here. The request goes to your Netlify function, which calls OpenRouter securely using the API key stored in Netlify environment variables.</p></div>
+  <div class="notice blue"><b>Important:</b> The URL alone is not enough. Paste the actual LinkedIn post text or a short summary for a truly customized message.</div>
+  <div class="grid">
+    <div class="card">
+      <h2>Lead Details</h2>
+      <p class="sub">Use the exact trigger, pain, and urgency to get better callback-focused outreach.</p>
+      <div class="field"><label>Poster name</label><input id="name" placeholder="Example: Sarah Mitchell"></div>
+      <div class="field"><label>Company</label><input id="company" placeholder="Example: ABC Dental Group"></div>
+      <div class="field"><label>Profile URL</label><input id="profile" placeholder="https://www.linkedin.com/in/..."></div>
+      <div class="field"><label>Post URL</label><input id="post" placeholder="https://www.linkedin.com/posts/..."></div>
+      <div class="field"><label>Service angle</label><select id="service"><option>Auto-detect</option><option>Bookkeeping</option><option>Tax Preparation</option><option>CPA Firm Support</option><option>Restaurant Accounting</option><option>Payroll Support</option><option>Contract Hire</option></select></div>
+      <div class="field"><label>Poster role</label><select id="role"><option>Founder / Owner</option><option>CPA Firm Partner</option><option>Operations Manager</option><option>Finance Manager / Controller</option><option>HR / Recruiter</option><option>Unknown</option></select></div>
+      <div class="field"><label>Business type</label><select id="businessType"><option>Small business</option><option>CPA firm</option><option>Restaurant / hospitality</option><option>Startup / growing company</option><option>Professional services</option><option>Unknown</option></select></div>
+    </div>
+    <div class="card">
+      <h2>Personalization Inputs</h2>
+      <p class="sub">These are the fields that make the AI output feel specific instead of generic.</p>
+      <div class="field"><label>Exact trigger from post</label><input id="trigger" placeholder="Example: hiring a part-time QuickBooks bookkeeper"></div>
+      <div class="field"><label>Likely pain</label><select id="pain"><option>Capacity shortage</option><option>Books cleanup</option><option>Tax season workload</option><option>Payroll/reconciliation issue</option><option>Need reliable monthly support</option><option>Need lower-cost flexible support</option><option>Unknown</option></select></div>
+      <div class="field"><label>Urgency</label><select id="urgency"><option>Unknown</option><option>ASAP / urgent</option><option>This week</option><option>This month</option><option>Seasonal support</option><option>Ongoing support</option></select></div>
+      <div class="field"><label>CTA preference</label><select id="cta"><option>Offer quick capability summary</option><option>Ask for 10-minute call</option><option>Offer to review requirement</option></select></div>
+      <div class="field"><label>Services to mention</label><input id="services" value="bookkeeping, QuickBooks cleanup, reconciliations, payroll coordination, tax prep support, reporting"></div>
+      <div class="field"><label>Paste post text or short summary</label><textarea id="postText" placeholder="Paste the LinkedIn post text here..."></textarea></div>
+      <div class="field"><label>Profile/context notes</label><textarea id="notes" placeholder="Example: Founder, dental group, Texas, uses QuickBooks, hiring contract support..."></textarea></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Generate</h2>
+    <button class="btn gold" onclick="generateAI()">Generate with OpenRouter AI</button>
+    <button class="btn outline" onclick="copyOutput()">Copy Output</button>
+    <button class="btn green" onclick="saveLocal()">Save Locally</button>
+    <button class="btn outline" onclick="clearForm()">Clear</button>
+    <div id="status" class="small"></div>
+  </div>
+  <div class="card"><h2>AI Output</h2><div id="output" class="output">Your AI-generated outreach will appear here.</div></div>
+</div>
+<script>
+function collectLead(){return{name:name.value.trim(),company:company.value.trim(),profile:profile.value.trim(),post:post.value.trim(),service:service.value,role:role.value,businessType:businessType.value,trigger:trigger.value.trim(),pain:pain.value,urgency:urgency.value,cta:cta.value,services:services.value.trim(),postText:postText.value.trim(),notes:notes.value.trim()}}
+async function generateAI(){status.textContent='Generating with OpenRouter...';output.textContent='Generating...';try{const res=await fetch('/.netlify/functions/generate-outreach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collectLead())});const data=await res.json();if(!res.ok){throw new Error(data.error||'OpenRouter request failed.')}output.textContent=data.text||'No output returned.';status.textContent='Generated using '+(data.model||'OpenRouter model')+'.';}catch(err){output.textContent='Error: '+err.message+'\n\nCheck that OPENROUTER_API_KEY is set in Netlify environment variables and the site has redeployed.';status.textContent='Generation failed.';}}
+function copyOutput(){const text=output.textContent.trim();if(!text||text==='Your AI-generated outreach will appear here.')return alert('Generate output first.');navigator.clipboard.writeText(text).then(()=>alert('Copied.'))}
+function saveLocal(){const item={date:new Date().toISOString(),lead:collectLead(),output:output.textContent};const saved=JSON.parse(localStorage.getItem('scalewise_ai_outreach')||'[]');saved.unshift(item);localStorage.setItem('scalewise_ai_outreach',JSON.stringify(saved));alert('Saved locally in this browser.');}
+function clearForm(){['name','company','profile','post','trigger','postText','notes'].forEach(id=>document.getElementById(id).value='');service.value='Auto-detect';role.value='Founder / Owner';businessType.value='Small business';pain.value='Capacity shortage';urgency.value='Unknown';cta.value='Offer quick capability summary';services.value='bookkeeping, QuickBooks cleanup, reconciliations, payroll coordination, tax prep support, reporting';output.textContent='Your AI-generated outreach will appear here.';status.textContent='';}
+</script>
+</body>
+</html>
