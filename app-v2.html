@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ScaleWise Lead Radar</title>
+<link rel="stylesheet" href="app-v2.css" />
+</head>
+<body>
+<div class="wrap">
+  <aside class="side">
+    <div class="brand"><div class="logo">SW</div><div><h1>ScaleWise</h1><p>Lead Radar V2</p></div></div>
+    <div class="nav">
+      <button class="active" onclick="openTab('dashboard',this)">🏠 Dashboard</button>
+      <button onclick="openTab('queue',this)">⚡ Search Queue</button>
+      <button onclick="openTab('search',this)">🔎 Search Library</button>
+      <button onclick="openTab('capture',this)">📋 Capture</button>
+      <button onclick="openTab('leads',this)">🔥 Lead CRM</button>
+      <button onclick="openTab('templates',this)">✉️ Outreach Pro</button>
+      <button onclick="window.location.href='ai-outreach.html'">🤖 AI Outreach</button>
+      <button onclick="openTab('guide',this)">⚙️ Guide</button>
+    </div>
+    <div class="safe"><b>Modular setup</b>Searches, scoring, layout, and styling now live in smaller files so future updates are easier to make automatically.</div>
+  </aside>
+
+  <main class="main">
+    <div class="top"><div><h2 id="title">Dashboard</h2><p id="desc">LinkedIn lead search assistant with modular search queries and AI outreach access.</p></div><div class="badge">Live app • Modular</div></div>
+
+    <section id="dashboard" class="tab active">
+      <div class="hero"><span>Modular Lead Radar</span><h3>Cleaner search library. Easier future updates.</h3><p>The app now uses smaller files for queries, styling, and logic. Future website updates should be easier to apply without manual edits.</p></div>
+      <div class="grid four">
+        <div class="card metric"><span>Total Leads</span><br><b id="totalLeads">0</b></div>
+        <div class="card metric"><span>Hot Leads</span><br><b id="hotLeads">0</b></div>
+        <div class="card metric"><span>Not Contacted</span><br><b id="notContacted">0</b></div>
+        <div class="card metric"><span>Follow-ups Due</span><br><b id="dueFollowups">0</b></div>
+      </div>
+      <div class="card"><h3>Best workflow</h3><p class="sub">Open a merged search, copy useful post text, capture it, then generate AI outreach.</p><div class="toolbar"><button class="btn gold" onclick="openNextSearch()">Open Next Search</button><button class="btn outline" onclick="openTabById('search')">Search Library</button><button class="btn green" onclick="window.location.href='ai-outreach.html'">AI Outreach</button></div><div class="notice blue"><b>Tip:</b> After LinkedIn opens, confirm filters show Posts + Past Week + Latest/Date Posted.</div></div>
+    </section>
+
+    <section id="queue" class="tab"><div class="card"><h3>Daily Search Queue</h3><p class="sub">Merged OR searches reduce clutter but still cover the same intent categories.</p><div class="toolbar"><button class="btn gold" onclick="openNextSearch()">Open Next LinkedIn Search</button><button class="btn outline" onclick="openTopSearches(4)">Open Top 4</button><button class="btn light" onclick="resetQueue()">Reset Queue</button></div><div id="queueList"></div></div></section>
+
+    <section id="search" class="tab"><div class="card"><h3>Search Library</h3><p class="sub">Merged OR queries keep the library smaller while covering multiple ways people ask for bookkeeping, tax, payroll, or contract help.</p><div class="notice green"><b>Reduced:</b> The library is grouped into high-intent categories instead of 30+ separate rows.</div><div id="searchButtons" class="search-grid"></div></div><div class="card"><h3>Custom search</h3><div class="field"><label>Search phrase</label><input id="customSearch" placeholder='Example: "bookkeeper" OR "tax preparer"'></div><div class="toolbar"><button class="btn gold" onclick="customLinkedIn()">Open LinkedIn</button><button class="btn outline" onclick="customGoogle()">Open Google</button></div></div></section>
+
+    <section id="capture" class="tab">
+      <div class="card"><h3>Bulk Capture</h3><p class="sub">Paste posts separated by a blank line. The app scores them and saves qualified leads.</p><textarea id="bulkText" placeholder="Paste post 1 here, including URL if available...&#10;&#10;Paste post 2 here..."></textarea><div class="toolbar"><button class="btn gold" onclick="saveBulk()">Analyze & Save Bulk Posts</button><button class="btn outline" onclick="previewBulk()">Preview Scores</button><button class="btn light" onclick="document.getElementById('bulkText').value='';document.getElementById('bulkResult').innerHTML=''">Clear</button></div><div id="bulkResult"></div></div>
+      <div class="card"><h3>Single Post Capture</h3><div class="grid two"><div class="field"><label>Name / Company</label><input id="person" placeholder="Example: John Smith, ABC Dental Group"></div><div class="field"><label>Post URL</label><input id="url" placeholder="Paste LinkedIn post URL"></div></div><div class="field"><label>Post text</label><textarea id="postText" placeholder="Paste one LinkedIn post here..."></textarea></div><div class="toolbar"><button class="btn gold" onclick="saveSingle()">Analyze & Save</button><button class="btn outline" onclick="analyzeSingleOnly()">Analyze Only</button><button class="btn light" onclick="clearSingle()">Clear</button></div><div id="result"></div></div>
+    </section>
+
+    <section id="leads" class="tab"><div class="card"><h3>Lead CRM</h3><p class="sub">Filter, update status, add notes, set follow-up dates, copy messages, and export CSV.</p><div class="toolbar"><input id="leadSearch" placeholder="Search leads..." oninput="renderLeads()" style="max-width:260px"><select id="serviceFilter" onchange="renderLeads()" style="max-width:190px"><option>All Services</option><option>Bookkeeping</option><option>Tax Preparation</option><option>CPA Firm Support</option><option>Restaurant Accounting</option><option>Payroll Support</option><option>Contract Hire</option><option>Bookkeeping + Tax</option></select><select id="qualityFilter" onchange="renderLeads()" style="max-width:145px"><option>All Quality</option><option>Hot</option><option>Warm</option><option>Review</option></select><select id="outreachFilter" onchange="renderLeads()" style="max-width:180px"><option>All Outreach</option><option>Not Contacted</option><option>Contacted</option><option>Replied</option><option>Call Booked</option><option>Converted</option><option>Not Fit</option></select><button class="btn gold" onclick="exportCSV()">Export CSV</button><button class="btn red" onclick="clearLeads()">Clear All</button></div><div id="leadRows"></div></div></section>
+
+    <section id="templates" class="tab"><div class="card"><h3>Outreach Pro</h3><p class="sub">Use this quick rule-based version for simple drafts, or open the AI Outreach page for the OpenRouter-powered generator.</p><div class="grid two"><div class="field"><label>Poster name</label><input id="outName" placeholder="Example: Sarah Mitchell"></div><div class="field"><label>Company / business</label><input id="outCompany" placeholder="Example: ABC Dental Group"></div></div><div class="grid two"><div class="field"><label>Exact trigger from post</label><input id="outTrigger" placeholder="Example: hiring a part-time QuickBooks bookkeeper"></div><div class="field"><label>Service angle</label><select id="outService"><option>Bookkeeping</option><option>Tax Preparation</option><option>CPA Firm Support</option><option>Restaurant Accounting</option><option>Payroll Support</option><option>Contract Hire</option></select></div></div><div class="field"><label>Post/context notes</label><textarea id="outNotes" placeholder="Paste short post summary or context here..."></textarea></div><div class="toolbar"><button class="btn gold" onclick="generateQuickOutreach()">Generate Quick Draft</button><button class="btn green" onclick="window.location.href='ai-outreach.html'">Open AI Outreach</button><button class="btn outline" onclick="copyQuickOutreach()">Copy</button></div><div id="quickOutreach" class="generated-box">Quick draft will appear here.</div></div></section>
+
+    <section id="guide" class="tab"><div class="card"><h3>How it works</h3><div class="notice"><b>Important:</b> This app opens LinkedIn search links and helps process posts manually. It does not auto-read LinkedIn URLs or auto-message people.</div><p class="sub">For stronger callbacks, use the AI Outreach page and paste the exact post text, trigger, pain, and urgency.</p></div><div class="card"><h3>Future update structure</h3><p class="sub">Search edits go into <b>search-queries.js</b>. App logic edits go into <b>app-v2.js</b>. Styling edits go into <b>app-v2.css</b>. AI page edits stay in <b>ai-outreach.html</b>.</p></div></section>
+  </main>
+</div>
+<script src="search-queries.js"></script>
+<script src="app-v2.js"></script>
+</body>
+</html>
