@@ -1,64 +1,64 @@
-const EXCLUDE_JOB_SEEKERS = ' NOT ("open to work" OR "#OpenToWork" OR "opentowork" OR "looking for work" OR "looking for job" OR "job seeker" OR "seeking opportunity" OR resume OR "hire me" OR "available for work")';
+const EXCLUDE_JOB_SEEKERS = ' NOT OpenToWork NOT "open to work" NOT "looking for work" NOT "looking for job" NOT "job seeker" NOT "seeking opportunity" NOT resume NOT "hire me" NOT "available for work" NOT candidate NOT "my resume"';
 
 window.SEARCH_QUERIES = [
   {
     priority: 1,
-    category: 'Bookkeeping Need',
-    query: '("need a bookkeeper" OR "looking for a bookkeeper" OR "hiring a bookkeeper" OR "bookkeeper needed")' + EXCLUDE_JOB_SEEKERS
+    category: 'Bookkeeping Buyer Intent',
+    query: '(need OR hiring OR recommend OR referral OR ISO OR "anyone know") AND (bookkeeper OR bookkeeping OR QuickBooks)' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 2,
-    category: 'Contract Bookkeeper',
-    query: '("part-time bookkeeper" OR "contract bookkeeper" OR "1099 bookkeeper" OR "remote bookkeeper")' + EXCLUDE_JOB_SEEKERS
+    category: 'Bookkeeper Needed Exact',
+    query: '("need a bookkeeper" OR "hiring a bookkeeper" OR "bookkeeper needed" OR "recommend a bookkeeper" OR "anyone know a bookkeeper")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 3,
-    category: 'QuickBooks / Cleanup',
-    query: '("QuickBooks cleanup" OR "monthly bookkeeping" OR "catch up bookkeeping" OR "bookkeeping help")' + EXCLUDE_JOB_SEEKERS
+    category: 'QuickBooks / Cleanup Buyer Intent',
+    query: '(need OR hiring OR recommend OR referral OR ISO) AND ("QuickBooks cleanup" OR "catch up bookkeeping" OR "monthly bookkeeping" OR reconciliation)' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 4,
-    category: 'Tax Preparer Need',
-    query: '("need a tax preparer" OR "looking for a tax preparer" OR "hiring a tax preparer" OR "tax preparer needed")' + EXCLUDE_JOB_SEEKERS
+    category: 'Tax Preparer Buyer Intent',
+    query: '(need OR hiring OR recommend OR referral OR ISO OR "anyone know") AND ("tax preparer" OR "tax preparation" OR "tax filing" OR "business tax")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 5,
-    category: 'Business Tax / 1099',
-    query: '("business tax return help" OR "1099 help" OR "tax filing help" OR "tax season help")' + EXCLUDE_JOB_SEEKERS
+    category: 'Tax Preparer Needed Exact',
+    query: '("need a tax preparer" OR "hiring a tax preparer" OR "tax preparer needed" OR "recommend a tax preparer" OR "anyone know a tax preparer")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 6,
-    category: 'CPA Firm Support',
-    query: '("CPA firm needs tax preparer" OR "CPA firm bookkeeping support" OR "tax season capacity" OR "outsourced tax preparation")' + EXCLUDE_JOB_SEEKERS
+    category: 'CPA Firm Capacity',
+    query: '("CPA firm" OR "accounting firm" OR "tax firm") AND (capacity OR overflow OR outsourced OR seasonal OR support OR hiring)' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 7,
-    category: 'Contract Accounting',
-    query: '("contract accounting support" OR "contract hire bookkeeper" OR "part-time accounting support" OR "interim accountant" OR "fractional accounting support")' + EXCLUDE_JOB_SEEKERS
+    category: 'Contract Accounting Buyer Intent',
+    query: '(need OR hiring OR recommend OR ISO) AND ("contract accounting" OR "part-time accounting" OR "interim accountant" OR "fractional accounting" OR "contract bookkeeper")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 8,
-    category: 'Seasonal Tax Support',
-    query: '("seasonal tax support" OR "temporary tax preparer" OR "freelance tax preparer" OR "1099 tax preparer")' + EXCLUDE_JOB_SEEKERS
+    category: 'Seasonal Tax Capacity',
+    query: '(need OR hiring OR recommend OR ISO) AND ("seasonal tax" OR "temporary tax" OR "tax season support" OR "tax prep support")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 9,
-    category: 'Restaurant Accounting',
-    query: '("restaurant bookkeeping" OR "restaurant accounting help" OR "restaurant payroll support")' + EXCLUDE_JOB_SEEKERS
+    category: 'Restaurant Accounting Need',
+    query: '(need OR hiring OR recommend OR ISO) AND (restaurant OR cafe OR hospitality) AND (bookkeeping OR accounting OR payroll)' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 10,
-    category: 'Payroll Support',
-    query: '("payroll support needed" OR "small business payroll help" OR "payroll help")' + EXCLUDE_JOB_SEEKERS
+    category: 'Payroll Support Need',
+    query: '(need OR hiring OR recommend OR ISO) AND (payroll OR Gusto OR ADP OR Paychex) AND (support OR help OR service)' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 11,
-    category: 'Outsourced / Virtual',
-    query: '("outsourced accounting" OR "virtual bookkeeping" OR "remote accounting support")' + EXCLUDE_JOB_SEEKERS
+    category: 'Outsourced Accounting Need',
+    query: '(need OR hiring OR recommend OR ISO) AND ("outsourced accounting" OR "virtual bookkeeping" OR "remote accounting support")' + EXCLUDE_JOB_SEEKERS
   },
   {
     priority: 12,
     category: 'Recommendation Posts',
-    query: '("recommend a bookkeeper" OR "recommend a tax preparer" OR "anyone know a bookkeeper")' + EXCLUDE_JOB_SEEKERS
+    query: '("recommend a bookkeeper" OR "recommend a tax preparer" OR "anyone know a bookkeeper" OR "anyone know a tax preparer" OR "looking for recommendations")' + EXCLUDE_JOB_SEEKERS
   }
 ];
